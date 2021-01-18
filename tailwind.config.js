@@ -161,7 +161,7 @@ module.exports = {
     fill: { current: 'currentColor' },
     flex: {
       1: '1 1 0%',
-      cv: '1 1 160px',
+      cv: '1 1 auto',
       auto: '1 1 auto',
       initial: '0 1 auto',
       none: 'none',
@@ -376,6 +376,7 @@ module.exports = {
       '5/6': '83.333333%',
       full: '100%',
       screen: '100vh',
+      dscreen:'200vh'
     }),
     inset: (theme, { negative }) => ({
       auto: 'auto',
@@ -477,6 +478,8 @@ module.exports = {
       '5xl': '64rem',
       '6xl': '72rem',
       '7xl': '80rem',
+      '1/3':'33%',
+      '1/2':'50%',
       full: '100%',
       min: 'min-content',
       max: 'max-content',

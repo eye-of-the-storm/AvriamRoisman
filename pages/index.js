@@ -153,18 +153,18 @@ const Project = (props) => {
 
 export default function Home() {
   return (
-    <div className=" w-full p-3 md:p-8 h-full md:h-screen" 
+    <div className=" w-full p-3 md:p-8 h-full md:h-ddscreen lg:h-dscreen" 
     >
       <Head>
         <title>Aviram Roisman </title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://meetee.ai/favicon.ico" />
       </Head>
       <div 
       className="flex bg-grey-100 h-full p-4 shadow-custom rounded-xl md:pt-0"
       // className=" bg-grey-100 shadow-custom p-4 md:p-8 rounded-xl h-full flex md:pt-0 pt-14 "
       >
         <div 
-        className="flex flex-col w-full flex-wrap h-full justify-center content-center"
+        className="flex flex-col w-full flex-wrap h-full content-center"
         // className="w-full md:w-full md:mx-auto h-full flex flex-wrap flex-col justify-center content-center  "
         >
           <Container className=" mt-16" >
@@ -210,8 +210,8 @@ export default function Home() {
           </Container>
 
           <Container title="Personal Profile" className= " bg-white border  border-grey-300  m-2  shadow-custom_sm ">
-            <div className="flex justify-around ">
-              <div>
+            <div className="flex justify-around  ">
+              <div className="mr-2">
               🥋  Karate Black belt
               </div>
               <div>
@@ -219,7 +219,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="flex justify-around mt-2">
-              <div>
+              <div className="mr-2">
               👥 Team Player
               </div>
               <div>
@@ -256,7 +256,7 @@ export default function Home() {
           </Container>
           <Container title="Career Summary" className=" bg-white border border-grey-300 m-2  shadow-custom_sm ">
           <div className=" text-grey-700">
-            <h1 className="underline text-xs">01.2017 - Present</h1>
+            <h1 className="underline text-xs">2017 - Present</h1>
             <h2 className="font-bold text-base">Full Stack Engineer - Freelance </h2>
             <div className="text-sm  m-auto">
               <label>

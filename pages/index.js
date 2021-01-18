@@ -157,7 +157,7 @@ export default function Home() {
     >
       <Head>
         <title>Aviram Roisman </title>
-        <link rel="icon" href="https://meetee.ai/favicon.ico" />
+        <link rel="icon" href="https://twemoji.maxcdn.com/2/svg/1f9b8.svg" />
       </Head>
       <div 
       className="flex bg-grey-100 h-full p-4 shadow-custom rounded-xl md:pt-0"

@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import {MdLink,MdAccessTime,MdPeople} from 'react-icons/md'
+import {MdLink,MdAccessTime,MdPeople,MdApps} from 'react-icons/md'
 
 const Container = ({title,children,...props}) => (
   <div className=" flex relative md:max-w-1/3" >
@@ -75,8 +75,8 @@ const Skill = ({rate,skill}) => (
 
 const Slider = ({rate}) => (
   <div className="relative h-2">
-    <div className="w-full absolute left-0 top-0 bg-custom-400 h-2" style={{width:rate/10*100 +"%"}}/>
-    <div className="w-full bg-grey-300 h-2"/>
+    <div className="w-full absolute left-0 rounded-md top-0 bg-custom-400 h-2" style={{width:rate/10*100 +"%"}}/>
+    <div className="w-full bg-grey-300 h-2 rounded-md"/>
   </div>
 )
 
@@ -101,6 +101,15 @@ const Project = (props) => {
           {state.company}
         </div>
       </a>
+      {
+        state.tech &&
+        <div className="flex w-full items-center">
+          <MdApps className="w-4 h-4 mr-2"/>
+          <div className="whitespace-pre-line w-4/5"> 
+            {state.tech}
+          </div>
+        </div>
+      }
       {
         state.period && 
         <div className="flex  w-full items-center">
@@ -151,12 +160,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div 
-      className="flex bg-grey-100 h-full p-4"
+      className="flex bg-grey-100 h-full p-4 shadow-custom rounded-xl md:pt-0"
       // className=" bg-grey-100 shadow-custom p-4 md:p-8 rounded-xl h-full flex md:pt-0 pt-14 "
       >
         <div 
-        className="flex flex-col w-full flex-wrap h-full "
-        // className="w-full md:w-full md:mx-auto h-full flex flex-wrap flex-col  "
+        className="flex flex-col w-full flex-wrap h-full justify-center content-center"
+        // className="w-full md:w-full md:mx-auto h-full flex flex-wrap flex-col justify-center content-center  "
         >
           <Container className=" mt-16" >
             <img 
@@ -217,7 +226,7 @@ export default function Home() {
               📚 Autodidact
                 </div>
             </div>
-            <div >
+            <div className="w-4/5" >
               <h1 className="mt-2  underline">Languages</h1>
               <Skill rate={10} skill="Hebrew"/>
               <Skill rate={10} skill="English"/>
@@ -253,7 +262,7 @@ export default function Home() {
               <label>
                 Some of my projects:
               </label>
-              <ul className="flex  text-xs flex-wrap m-auto ">
+              <ul className="flex  text-xs flex-wrap m-auto justify-center ">
                 <Project 
                 jobType="Consultant"
                 color="yellow"
@@ -262,6 +271,7 @@ export default function Home() {
                 description="Maintaining and developing exisiting product"
                 period="8 months"
                 company="Splitit LTD"
+                tech="ReactJS"
                 // users=""
                 />
                 <Project 
@@ -272,6 +282,7 @@ export default function Home() {
                 description="Managers and their teammates should get the best from their meetings,by using less “platform” and more AI to create meeting that work for them."
                 period="1 year"
                 company="Meetee.ai "
+                tech="ReactJS ,NodeJS ,Python ,MongoDB ,ML NLP"
                 // users="40,000 weekly users"
                 />
                 <Project 
@@ -282,6 +293,7 @@ export default function Home() {
                 description="Developing new Version of the product from scratch"
                 period="6 months"
                 company="Truckiby"
+                tech="ReactJS ,NodeJS ,MongoDB"
                 // users=""
                 />
                 <Project 
@@ -292,6 +304,7 @@ export default function Home() {
                 description="Developing several projects in my main stack (MERN)"
                 period="6 months"
                 company="8200AC"
+                tech="ReactJS ,Python ,PostgreSQL"
                 // users=""
                 />
                 <Project 
@@ -303,6 +316,7 @@ export default function Home() {
                 // period="6 months"
                 company="Israeli scouts "
                 users="500 monthly users"
+                tech="ReactJS ,NodeJS ,MongoDB"
                 />
                 <Project 
                 jobType="Freelance"
@@ -313,6 +327,7 @@ export default function Home() {
                 // period="6 months"
                 company="Israeli scouts "
                 users="40,000 weekly users"
+                tech="ReactJS ,NodeJS ,MongoDB"
                 />
                 <Project 
                 jobType="Volunteering"
@@ -322,6 +337,7 @@ export default function Home() {
                 description="Sitter Seeker App (Covid-19 volunteer project)"
                 period="2 months"
                 company="Microsoft Hackathon "
+                tech="ReactJS ,NodeJS "
                 // users="40,000 weekly users"
                 />
 

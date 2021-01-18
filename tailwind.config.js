@@ -17,7 +17,15 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-
+      custom: {
+        '100':'',
+        '400':'#3EA2FF'
+      },
+      grey:{
+        '100':'#EFEFEF',
+        '300':'#DADADA',
+        '700':'#3F3F3F',
+      },
       black: colors.black,
       white: colors.white,
       gray: colors.coolGray,
@@ -134,6 +142,8 @@ module.exports = {
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       none: 'none',
+      custom_sm:'0 0 4px rgba(0,0,0,0.1)',
+      custom:'0 0 4px rgba(0,0,0,0.25)',
     },
     container: {},
     cursor: {
@@ -151,6 +161,7 @@ module.exports = {
     fill: { current: 'currentColor' },
     flex: {
       1: '1 1 0%',
+      cv: '1 1 160px',
       auto: '1 1 auto',
       initial: '0 1 auto',
       none: 'none',

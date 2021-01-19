@@ -1,155 +1,172 @@
-import {useState} from 'react'
+import {useEffect,useRef,useState } from 'react'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 import {MdLink,MdAccessTime,MdPeople,MdApps} from 'react-icons/md'
 
-const Container = ({title,children,...props}) => (
-  <div className=" flex relative md:max-w-1/3" >
-    <div  className={" p-2 rounded-xl flex-cv my-2 md:m-4 relative  " + props.className} >
-      <h1 className="text-custom-400 font-bold mb-4">
-        {title}
-      </h1>
-      {children}
-    </div>
-  </div>
-)
-// max-w-xl
-
-const DetailPart = ({children,label}) => (
-  <div className="my-2 text-grey-700 text-sm">
-    <h2 className="font-bold">
-      {label}
-    </h2>
-    {children}
-  </div>
-)
-
-const WithTooltip = ({icon,text}) => {
-  const [show,setShow] = useState(false)
-  return (
-    <div className="relative cursor-default  mx-2">
-      <div onMouseEnter={()=>setShow(true)} onMouseLeave={()=>setShow(false)}>{icon}</div>
-      {
-      show &&
-      <div className="absolute top-0 w-max transform -translate-x-1/2 left-1/2 -translate-y-full bg-grey-700 p-2 text-sm text-white rounded-md">{text}</div>
-      }
-    </div>
-  )
-}
-
-const EducationalPart = ({period,location,subject,special = false}) => (
-  <div className="flex flex-col  py-2 text-grey-700">
-    <h1 className=" text-base underline">
-      {period}
-    </h1>
-    <h2 className="font-bold">
-      {subject}
-    </h2>
-    {
-      special &&
-      <div>
-        <div className="flex items-center">
-          <label className="text-sm">
-            Major: 
-          </label>
-          <WithTooltip icon={"⚛️"} text={"Physics"}/>
-          <WithTooltip icon={"🛰️  "} text={"Astrophysics"}/>
-          <WithTooltip icon={"💻"} text={"Computers"}/>
-          <WithTooltip icon={"🇷🇺 "} text={"Russian language"}/>
+const Project = (props) => {
+    const [isHover,setHover] = useState(false)
+    const state = {...props}
+    return (
+      <li 
+      onMouseLeave={()=>setHover(false)}
+      onMouseEnter={()=>setHover(true)}
+      className="flex w-full flex-col pt-2 relative items-center md:w-2/5 m-2 border rounded-lg  "
+      >
+        {isHover &&
+        <div className={`absolute w-4/5 border-grey-300 shadow-custom cursor-default rounded-lg bg-white z-20 left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 text-xs  p-1`}>
+        
+        <a 
+        className=" underline text-center font-medium "
+        target="_blank" href={state.link}>
+          <div className=" my-2 w-full flex items-center">
+           <MdLink className="w-4 h-4 mr-2"/>
+            {state.company}
+          </div>
+        </a>
+        {
+          state.tech &&
+          <div className="flex w-full items-center mb-1">
+            <MdApps className="w-4 h-4 mr-2"/>
+            <div className="whitespace-pre-line w-4/5"> 
+              {state.tech}
+            </div>
+          </div>
+        }
+        {
+          state.period && 
+          <div className="flex  w-full items-center">
+            <MdAccessTime className="w-4 h-4 mr-2"/>
+            {state.period}
+          </div>
+        }
+        {
+          state.users &&
+          <div className="flex w-full items-center">
+            <MdPeople className="w-4 h-4 mr-2"/>
+            <div className="whitespace-pre-line w-4/5"> 
+              {state.users}
+            </div>
+          </div>
+        }
+        </div>
+        }
+      <div
+      className={`${isHover && "opacity-50 hover:shadow-custom_sm" }  relative z-10  flex items-center flex-col w-full`}
+       >
+        <div className="underline">
+          {state.jobType}
         </div>
         
-      </div>
-    }
-    <h2 className="text-sm">
-      {location}
-    </h2>
-  </div>
-)
-
-const Skill = ({rate,skill}) => (
-  <div className="mb-2">
-    <label className="text-sm">{skill}</label>
-    <Slider rate={rate}/>
-  </div>
-)
-
-const Slider = ({rate}) => (
-  <div className="relative h-2">
-    <div className="w-full absolute left-0 rounded-md top-0 bg-custom-400 h-2" style={{width:rate/10*100 +"%"}}/>
-    <div className="w-full bg-grey-300 h-2 rounded-md"/>
-  </div>
-)
-
-
-const Project = (props) => {
-  const [isHover,setHover] = useState(false)
-  const state = {...props}
-  return (
-    <li 
-    onMouseLeave={()=>setHover(false)}
-    onMouseEnter={()=>setHover(true)}
-    className="flex w-full flex-col pt-2 relative items-center md:w-2/5 m-2 border rounded-lg  "
-    >
-      {isHover &&
-      <div className={`absolute w-4/5 border-grey-300 shadow-custom cursor-default rounded-lg bg-white z-20 left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 text-xs  p-1`}>
-      
-      <a 
-      className=" underline text-center font-medium "
-      target="_blank" href={state.link}>
-        <div className=" my-2 w-full flex items-center">
-         <MdLink className="w-4 h-4 mr-2"/>
-          {state.company}
-        </div>
-      </a>
-      {
-        state.tech &&
-        <div className="flex w-full items-center">
-          <MdApps className="w-4 h-4 mr-2"/>
-          <div className="whitespace-pre-line w-4/5"> 
-            {state.tech}
+          <img className="w-16 h-16" src={state.img}/>
+        {/* </a> */}
+        {
+          state.description &&
+          <div className="flex w-full items-center text-xs"> 
+            {/* <MdDescription className="w-4 h-4 mr-2"/> */}
+            <div className="whitespace-pre-line ml-4 text-left my-2">
+              {state.description}
+            </div>
           </div>
+        }
         </div>
-      }
-      {
-        state.period && 
-        <div className="flex  w-full items-center">
-          <MdAccessTime className="w-4 h-4 mr-2"/>
-          {state.period}
-        </div>
-      }
-      {
-        state.users &&
-        <div className="flex w-full items-center">
-          <MdPeople className="w-4 h-4 mr-2"/>
-          <div className="whitespace-pre-line w-4/5"> 
-            {state.users}
-          </div>
-        </div>
-      }
+      </li>
+    )
+  }
+  const Container = ({title,children,...props}) => (
+    <div className=" flex relative md:max-w-1/3" >
+      <div  className={" p-2 rounded-xl flex-cv my-2 md:m-4 relative  " + props.className} >
+        <h1 className="text-custom-400 font-bold mb-4">
+          {title}
+        </h1>
+        {children}
       </div>
-      }
-    <div
-    className={`${isHover && "opacity-50 hover:shadow-custom_sm" }  relative z-10  flex items-center flex-col w-full`}
-     >
-      <div className="underline">
-        {state.jobType}
-      </div>
-      
-        <img className="w-16 h-16" src={state.img}/>
-      {/* </a> */}
-      {
-        state.description &&
-        <div className="flex w-full items-center text-xs"> 
-          {/* <MdDescription className="w-4 h-4 mr-2"/> */}
-          <div className="whitespace-pre-line ml-4 text-left my-2">
-            {state.description}
-          </div>
-        </div>
-      }
-      </div>
-    </li>
+    </div>
   )
-}
+
+  const Skill = ({rate,skill}) => (
+    <div className="mb-2">
+      <label className="text-sm">{skill}</label>
+      <Slider rate={rate}/>
+    </div>
+  )
+
+  const Slider = ({rate}) => {
+    const [grade,setGrade] = useState(0)
+    const ref = useRef()
+  
+    const isInViewport = (offset = 0)  => {
+      if (!ref.current) return false;
+      const top = ref.current.getBoundingClientRect().top;
+      return (top + offset) >= 0 && (top - offset) <= window.innerHeight;
+    }
+    useEffect(()=>{
+      if(isInViewport()){
+        setGrade(rate)
+      }
+      document.addEventListener('scroll', function(e) {
+        if(isInViewport()){
+          setGrade(rate)
+        }
+      })
+    },[])
+  
+    return (
+      <div ref={ref} className="relative h-2">
+        <div className="absolute left-0 rounded-md top-0 bg-custom-400 h-2 w-0 transition-all" style={{width:grade/10*100 +"%",transitionDuration:"1500ms"}}/>
+        <div className="w-full bg-grey-300 h-2 rounded-md"/>
+      </div>
+    )
+  }
+
+  const DetailPart = ({children,label}) => (
+    <div className="my-2 text-grey-700 text-sm">
+      <h2 className="font-bold">
+        {label}
+      </h2>
+      {children}
+    </div>
+  )
+  
+  const EducationalPart = ({period,location,subject,special = false}) => (
+    <div className="flex flex-col  py-2 text-grey-700">
+      <h1 className=" text-base underline">
+        {period}
+      </h1>
+      <h2 className="font-bold">
+        {subject}
+      </h2>
+      {
+        special &&
+        <div>
+          <div className="flex items-center">
+            <label className="text-sm">
+              Major: 
+            </label>
+            <WithTooltip icon={"⚛️"} text={"Physics"}/>
+            <WithTooltip icon={"🛰️  "} text={"Astrophysics"}/>
+            <WithTooltip icon={"💻"} text={"Computers"}/>
+            <WithTooltip icon={"🇷🇺 "} text={"Russian language"}/>
+          </div>
+          
+        </div>
+      }
+      <h2 className="text-sm">
+        {location}
+      </h2>
+    </div>
+  )
+  
+  const WithTooltip = ({icon,text}) => {
+    const [show,setShow] = useState(false)
+    return (
+      <div className="relative cursor-default  mx-2">
+        <div onMouseEnter={()=>setShow(true)} onMouseLeave={()=>setShow(false)}>{icon}</div>
+        {
+        show &&
+        <div className="absolute top-0 w-max transform -translate-x-1/2 left-1/2 -translate-y-full bg-grey-700 p-2 text-sm text-white rounded-md">{text}</div>
+        }
+      </div>
+    )
+  }
 
 export default function Home() {
   return (
@@ -282,7 +299,7 @@ export default function Home() {
                 description="Managers and their teammates should get the best from their meetings,by using less “platform” and more AI to create meeting that work for them."
                 period="1 year"
                 company="Meetee.ai "
-                tech="ReactJS ,NodeJS ,Python ,MongoDB ,ML NLP"
+                tech="ReactJS, NodeJS, Python, MongoDB, ML NLP"
                 // users="40,000 weekly users"
                 />
                 <Project 
@@ -293,7 +310,7 @@ export default function Home() {
                 description="Developing new Version of the product from scratch"
                 period="6 months"
                 company="Truckiby"
-                tech="ReactJS ,NodeJS ,MongoDB"
+                tech="ReactJS, NodeJS, MongoDB"
                 // users=""
                 />
                 <Project 
@@ -304,7 +321,7 @@ export default function Home() {
                 description="Developing several projects in my main stack (MERN)"
                 period="6 months"
                 company="8200AC"
-                tech="ReactJS ,Python ,PostgreSQL"
+                tech="ReactJS, Python, PostgreSQL"
                 // users=""
                 />
                 <Project 
@@ -316,7 +333,7 @@ export default function Home() {
                 // period="6 months"
                 company="Israeli scouts "
                 users="500 monthly users"
-                tech="ReactJS ,NodeJS ,MongoDB"
+                tech="ReactJS, NodeJS, MongoDB"
                 />
                 <Project 
                 jobType="Freelance"
@@ -327,7 +344,7 @@ export default function Home() {
                 // period="6 months"
                 company="Israeli scouts "
                 users="40,000 weekly users"
-                tech="ReactJS ,NodeJS ,MongoDB"
+                tech="ReactJS, NodeJS, MongoDB"
                 />
                 <Project 
                 jobType="Volunteering"
@@ -337,7 +354,7 @@ export default function Home() {
                 description="Sitter Seeker App (Covid-19 volunteer project)"
                 period="2 months"
                 company="Microsoft Hackathon "
-                tech="ReactJS ,NodeJS "
+                tech="ReactJS, NodeJS "
                 // users="40,000 weekly users"
                 />
 

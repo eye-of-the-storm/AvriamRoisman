@@ -23,7 +23,7 @@ export const Project = (props) => {
         </a>
         {
           state.tech &&
-          <div className="flex w-full items-center">
+          <div className="flex w-full items-center mb-1">
             <MdApps className="w-4 h-4 mr-2"/>
             <div className="whitespace-pre-line w-4/5"> 
               {state.tech}
